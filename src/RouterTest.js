@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect, Link } from 'react-router-dom';
 
+
 const Header = (props) => <div>Header</div>
 const Home = ({ authenticate, isLoggedIn }) => {
   return (
@@ -32,7 +33,20 @@ const requireAuthentication = (WrappedComponent) => {
 const MemberPage = () => <h1>Member Page</h1>
 const ProtectedMemberPage = requireAuthentication(MemberPage);
 
+
 class RouterTest extends Component {
+  state = {
+    isLoggedIn: false
+  }
+
+  handleLogin = () => {
+    this.setState((prevState) => {
+      return {
+        isLoggedIn: !prevState.isLoggedIn
+      }
+    })
+  }
+
   render() {
     return (
       <div>
